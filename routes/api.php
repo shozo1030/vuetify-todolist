@@ -3,6 +3,8 @@
 use App\Http\Controllers\ItemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\v1\LoginController;
+use App\Http\Controllers\api\v1\user\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 Route::get('/items', [ItemController::class, 'index']);
 Route::prefix('/item')->group(
@@ -27,3 +29,10 @@ Route::prefix('/item')->group(
         Route::delete('/{id}', [ItemController::class, 'destroy']);
     }
 );
+
+//Users
+Route::prefix('/user')->group(function() {
+    Route::post('/login', [LoginController::class, 'login']);
+    Route::middleware('auth:api')->get('/all','api\v1\user\UserController@index');
+    Route::middleware('auth:api')->get('/current',[UserController::class, 'currentUser']);
+});
