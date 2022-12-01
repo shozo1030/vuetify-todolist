@@ -28,6 +28,12 @@ const actions = {
                 window.location.replace("/home")
             }
         })
+    },
+    logoutUser() {
+
+        localStorage.removeItem('blog_token');
+        window.location.replace("/login");
+
     } 
 };
 const mutations = {
