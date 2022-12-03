@@ -1,5 +1,17 @@
 <template>
-  <div class="item">
+  <div>
+    <v-checkbox @change="updateCheck()" v-model="item.completed" class=""></v-checkbox>
+    <span :class="[item.completed ? 'completed' : '', 'itemText']">{{
+        item.name
+    }}</span>
+    <v-icon color="red" slot="append" @click="removeItem()">
+      mdi-delete
+    </v-icon>
+    <v-icon color="green" slot="append" @click="editItem()">
+      mdi-pencil
+    </v-icon>
+  </div>
+  <!-- <div class="item">
     <input type="checkbox" @change="updateCheck()" v-model="item.completed" />
     <span :class="[item.completed ? 'completed' : '', 'itemText']">{{
       item.name
@@ -10,7 +22,7 @@
     <button @click="editItem()" class="pencil">
       <font-awesome-icon icon="pencil" />
     </button>
-  </div>
+  </div> -->
 </template>
 <script>
 export default {
@@ -55,21 +67,25 @@ export default {
   text-decoration: line-through;
   color: #999999;
 }
+
 .itemText {
   width: 100%;
   margin-left: 20px;
 }
+
 .item {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .trashcan {
   background: #e6e6e6;
   border: none;
   color: #ff0000;
   outline: none;
 }
+
 .pencil {
   background: #e6e6e6;
   border: none;

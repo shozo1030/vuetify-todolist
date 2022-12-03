@@ -10,7 +10,6 @@ window.Vue = require('vue');
 
 import Vuetify from "../plugins/vuetify"
 import Vue from 'vue'
-import App from './vue/app'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

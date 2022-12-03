@@ -24,19 +24,23 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>TodoList</v-toolbar-title>
     </v-app-bar>
 
     <v-main>
-      <!--  -->
+      <app></app>
     </v-main>
   </v-app>
 </template>
   
 <script>
 import axios from 'axios';
+import app from '../vue/app.vue'
 
 export default {
+  components: {
+    app
+  },
   data: () => ({ drawer: null }),
   computed: {
     currentUser: {

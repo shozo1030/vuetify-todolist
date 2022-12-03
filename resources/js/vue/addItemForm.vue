@@ -1,5 +1,18 @@
 <template>
-  <div class="addItem">
+  <div>
+    <div v-if="flag">
+      <v-text-field v-model="item.name" ref="focusInput">
+        <v-icon slot="append" :class="[item.name ? 'active' : 'inactive', 'plus']" @click="addItem()">mdi-plus</v-icon>
+      </v-text-field>
+    </div>
+    <div v-else>
+      <v-text-field v-model="item.name" ref="focusInput">
+        <v-icon color="green" slot="append" @click="editData()">mdi-pencil</v-icon>
+      </v-text-field>
+    </div>
+  </div>
+
+  <!-- <div class="addItem">
     <input type="text" v-model="item.name" ref="focusInput"/>
     <div v-if="flag">
       <font-awesome-icon
@@ -20,7 +33,7 @@
       class="close"
       />
     </div>
-  </div>
+  </div> -->
 </template>
 <script>
 export default {
@@ -66,23 +79,23 @@ export default {
           console.log(error);
         });
     },
-    editData(){
+    editData() {
       axios
         .put("api/item/" + this.item.id, {
           item: this.item,
         })
-        .then((response) =>{
-          if(response.status == 200) {
-              this.flag = true;
-              setTimeout(() =>{window.location.reload();}, 1000);
-            }
-          })
+        .then((response) => {
+          if (response.status == 200) {
+            this.flag = true;
+            setTimeout(() => { window.location.reload(); }, 1000);
+          }
+        })
         .catch((error) => {
           console.log(error);
         })
     },
     editCancel() {
-      setTimeout(() =>{window.location.reload();}, 500);
+      setTimeout(() => { window.location.reload(); }, 500);
     },
     getList() {
       axios
@@ -132,6 +145,7 @@ input {
   font-size: 1.37em;
 
 }
+
 .aiconlist {
   display: flex;
   justify-content: space-between;
