@@ -1,29 +1,45 @@
 <template>
-    <div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" v-model="user.email" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" v-model="user.password" id="exampleInputPassword1">
-        </div>
-        <button type="submit" @click="login" class="btn btn-primary">Submit</button>
-    </div>
+    <v-app>
+        <v-main>
+            <v-container fill-height>
+                <v-card width="400px" class="mx-auto">
+                    <v-card-title>
+                        <h1 class="display-1">ログイン</h1>
+                    </v-card-title>
+                    <v-card-text>
+                        <v-form>
+                            <v-text-field prepend-icon="mdi-account-circle" label="メールアドレス" v-model="user.email" />
+                            <v-text-field prepend-icon="mdi-lock" label="パスワード" v-model="user.password"
+                                v-bind:type="showPassword ? 'text' : 'password'"
+                                v-bind:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                @click:append="showPassword = !showPassword" />
+                            <v-card-actions>
+                                <v-btn class="info" @click="login">ログイン</v-btn>
+                            </v-card-actions>
+                        </v-form>
+                    </v-card-text>
+                </v-card>
+            </v-container>
+        </v-main>
+    </v-app>
 </template>
-
+  
 <script>
-    export default {
-        data: () => ({
-            user: {
-                email: "",
-                password: ""
-            }
-        }),
-        methods: {
-            login() {
-                this.$store.dispatch('currentUser/loginUser', this.user);
-            }
+
+export default {
+    name: 'App',
+    data: () => ({
+        showPassword: false,
+        user: {
+            email: "",
+            password: ""
+        }
+    }),
+    methods: {
+
+        login() {
+            this.$store.dispatch('currentUser/loginUser', this.user);
         }
     }
+};
 </script>
