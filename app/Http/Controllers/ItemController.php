@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class ItemController extends Controller
@@ -15,7 +16,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return Item::orderBy('created_at', 'DESC')->get();
+        $userId = auth()->guard('api')->user()->id;
+
+        return Item::where('user_id', '=', $userId)->orderBy('created_at', 'DESC')->get();
     }
 
     /**
@@ -36,7 +39,9 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+        $userId = auth()->guard('api')->user()->id;
         $newItem = new Item;
+        $newItem->user_id = $userId;
         $newItem->name = $request->item["name"];
         $newItem->save();
 
