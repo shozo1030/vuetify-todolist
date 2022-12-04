@@ -33,6 +33,7 @@ Route::prefix('/item')->group(
 //Users
 Route::prefix('/user')->group(function() {
     Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/register', [LoginController::class, 'register']);
     Route::middleware('auth:api')->get('/all','api\v1\user\UserController@index');
     Route::middleware('auth:api')->get('/current',[UserController::class, 'currentUser']);
 });

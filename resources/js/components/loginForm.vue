@@ -8,6 +8,7 @@
                         <v-icon large>{{ i.icon }}</v-icon>
                         <div class="caption py-1">{{ i.name }}</div>
                     </v-tab>
+                    <!-- ログイン画面 -->
                     <v-tab-item>
                         <v-card class="px-4">
                             <v-card-text>
@@ -36,18 +37,15 @@
                             </v-card-text>
                         </v-card>
                     </v-tab-item>
+                    <!-- 登録画面 -->
                     <v-tab-item>
                         <v-card class="px-4">
                             <v-card-text>
                                 <v-form ref="registerForm" v-model="valid" lazy-validation>
                                     <v-row>
-                                        <v-col cols="12" sm="6" md="6">
-                                            <v-text-field v-model="firstName" :rules="[rules.required]"
-                                                label="First Name" maxlength="20" required></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6" md="6">
-                                            <v-text-field v-model="lastName" :rules="[rules.required]" label="Last Name"
-                                                maxlength="20" required></v-text-field>
+                                        <v-col cols="12">
+                                            <v-text-field :rules="[rules.required]"
+                                                label="Name" v-model="userName" maxlength="20" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
                                             <v-text-field v-model="email" :rules="emailRules" label="E-mail" required>
@@ -71,7 +69,7 @@
                                         </v-col>
                                         <v-spacer></v-spacer>
                                         <v-col class="d-flex ml-auto" cols="12" sm="3" xsm="12">
-                                            <v-btn x-large block :disabled="!valid" color="success" @click="validate">
+                                            <v-btn x-large block :disabled="!valid" color="success" @click="registerUser">
                                                 Register</v-btn>
                                         </v-col>
                                     </v-row>
@@ -86,6 +84,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     computed: {
         passwordMatch() {
@@ -104,6 +104,23 @@ export default {
         },
         resetValidation() {
             this.$refs.form.resetValidation();
+        },
+        registerUser() {
+            if (this.$refs.registerForm.validate()) {
+                axios.
+                    post("api/user/register",{
+                        userName: this.userName,
+                        email: this.email,
+                        password: this.password,
+                    })
+                    .then((response) => {
+                        console.log(response.data);
+                        window.location.replace("/login");
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+            }
         }
     },
     data: () => ({
@@ -114,9 +131,7 @@ export default {
             { name: "Register", icon: "mdi-account-outline" }
         ],
         valid: true,
-
-        firstName: "",
-        lastName: "",
+        userName:"",
         email: "",
         password: "",
         verify: "",
