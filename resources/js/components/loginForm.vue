@@ -4,7 +4,7 @@
             <div>
                 <v-tabs v-model="tab" show-arrows background-color="deep-purple accent-4" icons-and-text dark grow>
                     <v-tabs-slider color="purple darken-4"></v-tabs-slider>
-                    <v-tab v-for="i in tabs" :key="i">
+                    <v-tab v-for="i in tabs" :key="i.id">
                         <v-icon large>{{ i.icon }}</v-icon>
                         <div class="caption py-1">{{ i.name }}</div>
                     </v-tab>
@@ -127,8 +127,8 @@ export default {
         dialog: true,
         tab: 0,
         tabs: [
-            { name: "Login", icon: "mdi-account" },
-            { name: "Register", icon: "mdi-account-outline" }
+            { id:1, name: "Login", icon: "mdi-account" },
+            { id:2, name: "Register", icon: "mdi-account-outline" }
         ],
         valid: true,
         userName:"",
