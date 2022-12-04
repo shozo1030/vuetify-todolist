@@ -11,7 +11,7 @@
     <title>todolist</title>
 
     <!-- Scripts -->
-    <!--<script src="{{ asset('js/app.js') }}" defer></script>-->
+    <script src="{{ url(asset('js/app.js')) }}" defer></script>
 
     <script>
         if(!localStorage.hasOwnProperty("blog_token")) {
@@ -33,6 +33,6 @@
     <div id="app">
         <app-container></app-container>
     </div>
-    <script src="{{ mix('js/app.js') }}"></script>
+    <!-- <script src="{{ mix('js/app.js') }}"></script> -->
 </body>
 </html>
