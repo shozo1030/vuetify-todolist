@@ -25,7 +25,9 @@
                                                 name="input-10-1" label="Password" hint="At least 8 characters" counter
                                                 @click:append="show1 = !show1"></v-text-field>
                                         </v-col>
-                                        <p class="red--text">{{message}}</p>
+                                        <v-col cols="12">
+                                            <p class="red--text">{{message}}</p>
+                                        </v-col>
                                         <v-col class="d-flex" cols="12" sm="6" xsm="12">
                                         </v-col>
                                         <v-spacer></v-spacer>
