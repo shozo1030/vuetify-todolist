@@ -25,6 +25,7 @@
                                                 name="input-10-1" label="Password" hint="At least 8 characters" counter
                                                 @click:append="show1 = !show1"></v-text-field>
                                         </v-col>
+                                        <p class="red--text">{{message}}</p>
                                         <v-col class="d-flex" cols="12" sm="6" xsm="12">
                                         </v-col>
                                         <v-spacer></v-spacer>
@@ -90,6 +91,9 @@ export default {
     computed: {
         passwordMatch() {
             return () => this.password === this.verify || "Password must match";
+        },
+        message() {
+            return this.$store.state.currentUser.message;
         }
     },
     methods: {

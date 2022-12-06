@@ -17,7 +17,7 @@ class LoginController extends Controller
         ]);
 
         if(!Auth::attempt($login)) {
-            return response(['message' => 'Invalid login credentials.']);
+            return response(['message' => '存在しないアカウントです']);
         }
 
         $accessToken = Auth::user()->createToken('authToken')->accessToken;

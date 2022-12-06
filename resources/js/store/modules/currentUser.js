@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const state = {
-    user: {}
+    user: {},
+    message:""
 };
 const getters = {};
 const actions = {
@@ -11,7 +12,7 @@ const actions = {
             commit('setUser',response.data);
         });
     },
-    loginUser( {} , user) {
+    loginUser( {commit} , user) {
         axios
         .post("api/user/login",{
             email: user.email,
@@ -26,6 +27,8 @@ const actions = {
                 )
 
                 window.location.replace("/home")
+            }else {
+                commit('setMessage',response.data['message']);
             }
         })
     },
@@ -40,6 +43,9 @@ const mutations = {
     setUser( state, data ) {
         //console.log(data);
         state.user = data;
+    },
+    setMessage(state,data) {
+        state.message = data;
     }
 };
 
