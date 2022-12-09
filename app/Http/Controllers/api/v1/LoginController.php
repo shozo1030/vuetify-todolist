@@ -26,6 +26,11 @@ class LoginController extends Controller
     }
 
     public function register(Request $request) {
+
+        $register = $request->validate([
+            'email' => 'unique:users',
+        ]);
+
         $newUser = new User;
         $newUser->name = $request->userName;
         $newUser->email = $request->email;

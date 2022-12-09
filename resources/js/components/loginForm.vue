@@ -124,6 +124,10 @@ export default {
                         window.location.replace("/login");
                     })
                     .catch((error) => {
+                        switch(error.response.status) {
+                            case 422:
+                                this.$store.dispatch('currentUser/showMessage',"既に登録されているメールアドレスです");
+                        }
                         console.log(error);
                     })
             }

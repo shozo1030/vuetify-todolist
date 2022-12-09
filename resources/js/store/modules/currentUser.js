@@ -37,7 +37,10 @@ const actions = {
         localStorage.removeItem('blog_token');
         window.location.replace("/login");
 
-    } 
+    },
+    showMessage({commit},msg) {
+        commit('setMessage',msg);
+    }
 };
 const mutations = {
     setUser( state, data ) {
