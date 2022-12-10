@@ -11,29 +11,6 @@
       </v-text-field>
     </div>
   </div>
-
-  <!-- <div class="addItem">
-    <input type="text" v-model="item.name" ref="focusInput"/>
-    <div v-if="flag">
-      <font-awesome-icon
-      icon="plus-square"
-      @click="addItem()"
-      :class="[item.name ? 'active' : 'inactive', 'plus']"
-      />
-    </div>
-    <div class="aiconlist" v-else>
-      <font-awesome-icon
-      icon="edit"
-      @click="editData()"
-      :class="[item.name ? 'active' : 'inactive', 'plus']"
-      />
-      <font-awesome-icon
-      icon="window-close"
-      @click="editCancel()"
-      class="close"
-      />
-    </div>
-  </div> -->
 </template>
 <script>
 export default {
@@ -87,7 +64,8 @@ export default {
         .then((response) => {
           if (response.status == 200) {
             this.flag = true;
-            setTimeout(() => { window.location.reload(); }, 1000);
+            this.item.name = "";
+            this.$emit("reloadlist");
           }
         })
         .catch((error) => {

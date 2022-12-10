@@ -13,14 +13,6 @@
       </v-row>
     </v-container>
   </v-form>
-
-  <!-- <div class="todoListContainer">
-    <div class="heading">
-      <h2 id="title">TodoList</h2>
-      <add-item-form v-on:reloadlist="getList()" :editItem="editItem" />
-    </div>
-    <list-view :items="items" v-on:reloadlist="getList()" @custom-click="edit" />
-  </div> -->
 </template>
 
 <script>
