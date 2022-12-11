@@ -2,12 +2,20 @@
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
-        <v-list-item link>
+        <v-list-item to="/profile">
           <v-list-item-action>
             <v-icon>mdi-account</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-title>{{ currentUser.name }}</v-list-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/app">
+          <v-list-item-action>
+            <v-icon>mdi-format-list-bulleted-triangle</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-title>Todolist</v-list-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link @click="logout">
@@ -28,7 +36,7 @@
     </v-app-bar>
 
     <v-main>
-      <app></app>
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
